@@ -6,13 +6,25 @@ import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
+import { HomeComponent } from './home/home.component';
+import { ChallengesComponent } from './challenges/challenges.component';
+import { ProfileComponent } from './profile/profile.component';
+import { NotfoundComponent } from './notfound/notfound.component';
+import { InboxComponent } from './inbox/inbox.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    AuthenticationComponent,
+    HomeComponent,
+    ChallengesComponent,
+    ProfileComponent,
+    NotfoundComponent,
+    InboxComponent
   ],
   imports: [
     BrowserModule,
