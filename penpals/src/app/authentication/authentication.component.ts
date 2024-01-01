@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AuthenticationComponent {
 
+  // Form variables
+  username: string = '';
+  password: string = '';
+
 }
