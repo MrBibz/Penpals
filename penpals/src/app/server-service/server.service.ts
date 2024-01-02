@@ -9,7 +9,7 @@ export class ServerService {
     this.authenticatedSubject = new BehaviorSubject<boolean>(false);
     this.authenticated$ = this.authenticatedSubject.asObservable();
   }
-
+  
   // Omnipresent attributes
   authenticated$: Observable<boolean>;
   private authenticatedSubject: BehaviorSubject<boolean>;
