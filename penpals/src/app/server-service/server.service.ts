@@ -2,18 +2,15 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ServerService {
-
-  constructor(
-
-  ) {
+  constructor() {
     this.authenticatedSubject = new BehaviorSubject<boolean>(false);
     this.authenticated$ = this.authenticatedSubject.asObservable();
   }
 
-  // Attributes needed everywhere
+  // Omnipresent attributes
   authenticated$: Observable<boolean>;
   private authenticatedSubject: BehaviorSubject<boolean>;
 
