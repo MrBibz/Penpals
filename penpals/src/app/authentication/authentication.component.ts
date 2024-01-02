@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ServerService } from '../server-service/server.service';
 import { Router } from '@angular/router';
+import { User } from '../interfaces/user';
 
 @Component({
   selector: 'app-authentication',
@@ -15,9 +16,12 @@ export class AuthenticationComponent {
     private router: Router
   ) {}
 
-  // Form variables
-  username: string = '';
-  password: string = '';
+  // User
+  user: User = {
+    username: '',
+    password: '',
+    friends: []
+  }
 
   // Authentication
   authenticate(): void {
