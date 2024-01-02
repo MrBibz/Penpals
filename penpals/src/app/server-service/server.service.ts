@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, map } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../interfaces/user';
 
 @Injectable({
@@ -17,6 +17,10 @@ export class ServerService {
     this.currentUser$ = this.currentUserSubject.asObservable();
   }
   
+  // URLs
+    // Local
+    private localURL: string = 'http://localhost:3000';
+
   // Omnipresent attributes : 
     // Boolean checking if the user is authenticated
     authenticated$: Observable<boolean>;
@@ -27,24 +31,15 @@ export class ServerService {
     private currentUserSubject: BehaviorSubject<User | null>;
 
   // Authentication
-  authenticate(user: User): Observable<User> {
-    this.http.get<User>(`/fetch/${user.username}`).subscribe(
-      {
-        next: (requestedUser: User) => {
-          console.log(requestedUser);
-          if (requestedUser.password === user.password) {
-            this.authenticatedSubject.next(true);
-            this.currentUserSubject.next(requestedUser);
-            return requestedUser;
-          }
-        },
-        error: (error: any) => {
-          console.error(error);
-        },
-        complete: () => {
-          console.log('Completed');
-        }
-      }
-    );
-  }
+    // Sign In
+    signIn(user: User): Observable<User> {
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      return this.http.get<User>(`${this.localURL}/signin/${user.username}` , { headers });
+    }
+
+    // Sign Up
+    signUp(user: User): Observable<User> {
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      return this.http.post<User>(`${this.localURL}/signup`, user, { headers });
+    }
 }

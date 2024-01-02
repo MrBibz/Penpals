@@ -13,16 +13,23 @@ export class AuthenticationComponent {
   // Constructor
   constructor(private server: ServerService, private router: Router) {}
 
-  // User
-  user: User = {
-    username: '',
-    password: '',
-    friends: [],
-  };
+  // Users 
+    // User Sign In
+    userSignIn: User = {
+      username: '',
+      password: '',
+      friends: [],
+    };
+
+    // User Sign Up
+    userSignUp: User = {
+      username: '',
+      password: '',
+      friends: [],
+    };
 
   // Verifies form errors
   errorMessages(state: NgModel): string[] {
-    console.log(state);
     let element: string = state.path.join(',');
     let messages: string[] = [];
     if (state.errors) {
@@ -48,8 +55,29 @@ export class AuthenticationComponent {
   }
 
   // Authentication
-  authenticate(): void {
-    this.server.authenticate();
-    this.router.navigate(['../home']);
-  }
+    // Sign In
+    signIn(): void {
+      this.server.signIn(this.userSignIn).subscribe(
+        (response) => {
+          console.log(response);
+          this.router.navigate(['../home']);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+
+    // Sign Up
+    signUp(): void {
+      this.server.signUp(this.userSignIn).subscribe(
+        (response) => {
+          console.log(response);
+          this.router.navigate(['../home']);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
 }
