@@ -19,21 +19,22 @@ mongoose.connect(localURL);
 
 interface UserDocument extends User, mongoose.Document {}
 
-app.get('/utilisateur/:username', async (req: Request, res: Response) => {
+app.get('/fetch/:username', async (req: Request, res: Response) => {
   const { username } = req.params;
+  const { password } = req.params;
 
   try {
-    let utilisateur = await UserModel.findOne({ username });
+    let user = await UserModel.findOne({ username });
 
-    if (!utilisateur) {
-      utilisateur = await UserModel.create({
+    if (!user) {
+      user = await UserModel.create({
         username,
         password: '',
         friends: [],
       });
     }
 
-    res.json(utilisateur);
+    res.json(user);
   } catch (error: any) {
     res.status(500).json({ message: (error as Error).message });
   }
