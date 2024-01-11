@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+html {
+    font-family: monospace;
+    padding: 0;
+    box-sizing: broder-box;
+}
+
+body {
+    min-height: 100 vh;
+    background-color: #000;
+    color: whitesmoke;
+    display: grid;
+    place-content: center;
+    padding: 1rem;
+}
